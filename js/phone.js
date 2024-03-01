@@ -21,7 +21,7 @@ const displayPhone=phonesDetails=>{
     const phones=phonesDetails.slice(0,12);
 
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         const phoneCard=document.createElement('div');
         phoneCard.classList=`card bg-base-100 shadow-2xl`;
         phoneCard.innerHTML=`
@@ -29,19 +29,31 @@ const displayPhone=phonesDetails=>{
         <div class="card-body">
             <h2 class="card-title">${phone.phone_name}</h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-center">
             <button class="btn btn-primary">Buy Now</button>
             </div>
         </div>
         `
         phoneContainer.appendChild(phoneCard);
     });
+    loadingFeature(false);
 }
 
 const handleSearch=()=>{
+    loadingFeature(true);
     const inputField=document.getElementById('input-field');
     const searchName=inputField.value;
     loadPhone(searchName);
+}
+
+const loadingFeature=(isLoading)=>{
+    const loadingBar=document.getElementById('loading-bar');
+    if(isLoading){
+        loadingBar.classList.remove('hidden')
+    }
+    else{
+        loadingBar.classList.add('hidden')
+    }
 }
 
 loadPhone();    
